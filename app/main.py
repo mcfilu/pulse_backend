@@ -3,5 +3,5 @@ from fastapi import FastAPI
 app = FastAPI()
 
 @app.get("/")
-def get_user():
-    return {"message": "Hello"}
+async def root():
+    return {"Message": "Welcome to the application, please refer to the /docs to check the api functionality"}
