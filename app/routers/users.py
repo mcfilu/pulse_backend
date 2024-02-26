@@ -15,7 +15,7 @@ async def get_user(user_id: int) -> UserData:
     async with httpx.AsyncClient() as client:
         response = await client.get(f"https://reqres.in/api/users/{user_id}")
     if response.status_code != 200:
-        raise HTTPException(status_code = response_status_code, detail=f"Error accessing regres.in Api at /users/{user_id} ")
+        raise HTTPException(status_code = response.status_code, detail=f"Error accessing regres.in Api at /users/{user_id} ")
 
     user_instance = transform_user(response)
     return user_instance

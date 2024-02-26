@@ -8,5 +8,6 @@ class UserData(BaseModel):
     last_name: str
     avatar: str
 
+#function that transforms the httpx response in the the class instance and moves the logic out of routers
 def transform_user(resp):
     return UserData(**resp.json()['data'])
