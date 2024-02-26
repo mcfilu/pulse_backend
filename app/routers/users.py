@@ -1,16 +1,10 @@
 from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
+from helpers.users import transform_user
 import requests
 
 router = APIRouter()
 
-#blueprint for pydantic basemodel class that represents the outputed data
-class UserData(BaseModel):
-    id: int
-    email: str
-    first_name: str
-    last_name: str
-    avatar: str
 
 """
 api endpoiint at /users/<int> that loads the user info from regres.in external api, 
@@ -23,6 +17,5 @@ async def get_user(user_id: int) -> UserData:
     if response.status_code != 200:
         raise HTTPException(status_code = response_status_code, detail=f"Error accessing regres.in Api at /users/{user_id} ")
 
-    user_instance = UserData(**response.json()['data'])
+    user_instance = transform_user(response)
     return user_instance
-    # return {"Message": "hello"}
