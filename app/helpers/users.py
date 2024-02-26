@@ -9,4 +9,4 @@ class UserData(BaseModel):
     avatar: str
 
 def transform_user(resp):
-    return UserData(**resp.json().['data'])
+    return UserData(**resp.json()['data'])
