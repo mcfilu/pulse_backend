@@ -1,7 +1,10 @@
-version: '2'
+version: '3'
 
 services:
   backend:
-    build: .
+    build:
+      context: .
     ports:
       - "8080:80"
+    volumes:
+      - .:/backEnd
