@@ -16,9 +16,10 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-"""
-The basic / endpoint that suits for the devs who mistakenly input it, showcases where to obtain the docs and more detailed info
-"""
+
 @app.get("/")
 async def root():
+    """
+    The basic / endpoint that suits for the devs who mistakenly input it, showcases where to obtain the docs and more detailed info
+    """
     return {"message": "Welcome to the application, please refer to the /docs url to check the api functionality"}

@@ -5,13 +5,14 @@ import httpx
 router = APIRouter()
 
 
-"""
-api endpoiint at /users/<int> that loads the user info from regres.in external api, 
-takes the information from ['data'], ommits the unecessary data, puts that into the pydantic object
-and return to client
-"""
+
 @router.get("/users/{user_id}", tags=["users"])
 async def get_user(user_id: int) -> UserData:
+    """
+    api endpoiint at /users/<int> that loads the user info from regres.in external api, 
+    takes the information from ['data'], ommits the unecessary data, puts that into the pydantic object
+    and return to client
+    """
     async with httpx.AsyncClient() as client:
         response = await client.get(f"https://reqres.in/api/users/{user_id}")
     if response.status_code != 200:
